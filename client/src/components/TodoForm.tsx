@@ -12,13 +12,14 @@ const TodoForm = () => {
     e.preventDefault();
 
     if (inputRef.current) {
-      fetch(`https://fullstack-todo-6.onrender.com/todo`, {
+      fetch(`http://localhost:3000/api/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title: inputRef.current.value,
+          completed: false,
         }),
       })
         .then((res) => res.json())

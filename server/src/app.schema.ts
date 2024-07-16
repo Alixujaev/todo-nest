@@ -8,8 +8,6 @@ export class CreateTodoPayload {
   @Prop({required: true})
   title: string;
   @Prop({required: true})
-  id: string;
-  @Prop({required: true})
   completed: boolean;
 }
 
