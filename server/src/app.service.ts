@@ -20,6 +20,7 @@ export class AppService {
   }
 
   async update(id: string, dto: AppDto){
-    return await this.appModel.updateOne({_id: id}, dto)
+    await this.appModel.updateOne({_id: id}, dto)
+    return await this.appModel.findOne({_id: id})
   }
 }
