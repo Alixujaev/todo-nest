@@ -1,7 +1,7 @@
 import { FormEvent, useRef } from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -16,7 +16,7 @@ const Login = () => {
     <div className="w-full h-screen flex justify-center items-center">
       <div className="p-4 py-6 rounded-xl border border-[#3E1671] w-96">
         <h2 className="text-white text-2xl font-semibold text-center mb-8">
-          Login
+          Register
         </h2>
 
         <form
@@ -48,12 +48,12 @@ const Login = () => {
             Submit
           </button>
         </form>
-        <Link to="/register" className="text-white flex justify-center">
-          Register
+        <Link to="/" className="text-white flex justify-center">
+          Login
         </Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
