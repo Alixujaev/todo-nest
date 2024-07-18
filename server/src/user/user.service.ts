@@ -7,7 +7,7 @@ import { UserDto } from "./dto/user.dto";
 @Injectable()
 
 export class UserService {
-  constructor(@InjectModel('User') private userModel: Model<UserType>){}
+  constructor(@InjectModel('user') private userModel: Model<UserType>){}
 
   async register(dto: UserDto){
     const {email, password} = dto
@@ -18,7 +18,7 @@ export class UserService {
     }
 
     const newUser = new this.userModel({email, password})
-
+    
     return await newUser.save()
   }
 }
