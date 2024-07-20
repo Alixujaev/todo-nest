@@ -1,15 +1,40 @@
 import { FormEvent, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    console.log(emailRef.current?.value, passwordRef.current?.value);
+    if (emailRef.current && passwordRef.current) {
+      fetch(`http://localhost:3000/api/user/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem("token", data.token);
+          navigate("/");
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.error("Error registering user:", error);
+        });
+    }
+
+    if (formRef.current) {
+      formRef.current.reset();
+    }
   }
 
   return (

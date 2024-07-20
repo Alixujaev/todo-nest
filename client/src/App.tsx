@@ -6,7 +6,7 @@ import Register from "./pages/Register";
 function App() {
   return (
     <Routes>
-      {false ? (
+      {localStorage.getItem("token") ? (
         <Route path="/" element={<Main />} />
       ) : (
         <>
