@@ -23,17 +23,20 @@ const Login = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          localStorage.setItem("token", data.token);
-          navigate("/");
-          window.location.reload();
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+            navigate("/");
+            window.location.reload();
+            if (formRef.current) {
+              formRef.current.reset();
+            }
+          } else {
+            alert("Invalid email or password");
+          }
         })
         .catch((error) => {
           console.error("Error registering user:", error);
         });
-    }
-
-    if (formRef.current) {
-      formRef.current.reset();
     }
   }
 
