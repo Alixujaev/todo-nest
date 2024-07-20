@@ -8,7 +8,13 @@ export class UserController {
 
   @HttpCode(201)
   @Post('/register')
-  create(@Body() dto: UserDto) {
+  register(@Body() dto: UserDto) {
     return this.userService.register(dto)
+  }
+
+  @HttpCode(201)
+  @Post('/login')
+  login(@Body() dto: UserDto) {
+    return this.userService.login(dto)
   }
 }
